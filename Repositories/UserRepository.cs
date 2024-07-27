@@ -29,8 +29,9 @@ namespace TaskSystem.Repositories
 
         public async Task<UserModel> Add(UserModel user)
         {
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            await _context.Users.AddAsync(user);
+            await _context.SaveChangesAsync();
+
             return user;
         }
 
@@ -46,7 +47,7 @@ namespace TaskSystem.Repositories
             userFind.Name = user.Name;
             userFind.Email = user.Email;
             _context.Users.Update(userFind);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return userFind;
         }
@@ -59,6 +60,7 @@ namespace TaskSystem.Repositories
                 throw new Exception($"The user {id} is not found in the database");
             }
             _context.Users.Remove(userFind);
+            await _context.SaveChangesAsync();
             return true;
         }
 
