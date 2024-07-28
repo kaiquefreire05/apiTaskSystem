@@ -25,6 +25,7 @@ namespace TaskSystem
 
             // Setting dependencies injection in project
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<ITaskRepository, TaskRepository> ();
 
             var app = builder.Build();
 
